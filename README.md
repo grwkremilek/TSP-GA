@@ -12,48 +12,52 @@
 - one of the following geocoding services:
   * [Google Geocoding API](https://developers.google.com/maps/documentation/javascript/geocoding)
   * [OpenCage Geocoder](https://opencagedata.com/tutorials/geocode-in-python) (via [geopy](https://geopy.readthedocs.io/en/stable/#opencage))
-- numpy
-- kivy
+
 
 ## Basic Structure
 
 - [Data](#data)
-- [Route](#route)
 - [Population](#population)
 - [Parent selection](#parent-selection)
 - [Crossover](#crossover)
 - [Mutation](#mutation)
-- [Survivor selection](#survivor-selection)
 - [Convergence](#convergence)
-- [Visualization](#visualization)
-- [Gui](#gui)
 - [Sources](#sources)
 
 ### Data
 
-* choice and naming of places must satisfy geocoding API conditions ([naming constraints for Google Geocoding API](https://developers.google.com/maps/documentation/geocoding/intro))
+* choice and naming of places must satisfy geocoding API conditions 
+[naming constraints for The Google Geocoding API](https://developers.google.com/maps/documentation/geocoding/intro)
+[request practices for The OpenCage Geocoder](https://opencagedata.com/api#bestpractices)
 
-
-
-### Route
-* represents a valid route
-* methods in the class obtain latitude and longitude, calculate distance between cities and calculate the fitness function (the inverse of the total distance between the cities).
 
 
 ### Population
-* collection of routes in one generation
-* methods in the class create a population of random valid routes and rank the routes. 
-* ranked routes are represented as a structured numpy array containing a total distance and a list of cities creating the route.
+* to make the algorithm the least black box possible, the Population class object is a list of class Tour objects, which again is a list of class City objects (the Matryoshka doll style)
+* the Population class object is a tuple consisiting of: fitness float value, distance, the Tour class object
 
-```
-[(1117.13816146, ['Pardubice', 'Opole', 'Olomouc', 'Brno', 'Znojmo', 'Opava', 'Jihlava', 'Liberec', 'Prague'])
- (1455.81749732, ['Pardubice', 'Brno', 'Jihlava', 'Opava', 'Znojmo', 'Opole', 'Prague', 'Liberec', 'Olomouc'])
- (1463.1483717 , ['Prague', 'Pardubice', 'Opava', 'Liberec', 'Jihlava', 'Opole', 'Znojmo', 'Olomouc', 'Brno'])]
-```
+
+``` print(p[0])``` 
+```(0.00047625626940124924, 2099.709892023475, [Olomouc, Opava, Trnava, Bratislava, Brno, Znojmo, Most, Opole, Jihlava, Prague, Liberec, Berlin, Pardubice])```
+
+
+
+``` print(p[0][2])``` 
+```[Olomouc, Opava, Trnava, Bratislava, Brno, Znojmo, Most, Opole, Jihlava, Prague, Liberec, Berlin, Pardubice]```
+
+
+``` print(p[0][2][3])```
+
+```Bratislava```
+
+
+``` print(p[0][2][3].longitude)``` 
+
+```17.1093063```
+
+
 
 ### Parent selection
-
-methods to choose parents: 
 
 * roulette wheel selection
     - fitness proportionate selection
@@ -84,11 +88,6 @@ methods to choose parents:
     - insertion mutation
     - scramble mutation
 
-### Survivor selection
-
-
-
-
 
 ### Convergence
 
@@ -98,12 +97,6 @@ methods to choose parents:
     - distance improvement over a number of generations
     - value threshold
 
-
-
-### Visualization
-
-
-### Gui
 
 
 ### Sources
