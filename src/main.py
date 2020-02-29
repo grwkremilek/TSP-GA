@@ -3,7 +3,7 @@ from parent_selection import rouletteWheelSelection, tournamentSelection, elitis
 from crossover import PMX, ERO
 from mutation import swap, invert, insert
 from convergence import evolveByCount, evolveByImprovement
-from visualization import plotGA
+from visualization import plotTours, plotGA
 
 import matplotlib.pyplot as plt
 
@@ -23,11 +23,13 @@ def main():
     #CONVERGENCE SETTINGS
     converged = False
     generationCount = 0
-    generationLimit = 150
+    generationLimit = 50
     
     #PLOTS
     distances = []
     tours = []
+    fig1 = plt.figure()
+    ax = fig1.add_subplot(1,1,1)
     
     
     #CREATE FIRST GENERATION
@@ -47,6 +49,8 @@ def main():
             lats.append(city.latitude)
             lons.append(city.longitude)
 
+        plotTours(lons, lats, ax)
+
         ##elitism
         newRoutes = []
         if eliteSize:
@@ -64,7 +68,6 @@ def main():
     print('The distance is   ', distances[-1])
     
     plotGA(distances, generationCount)
-
 
 if __name__ == '__main__': 
 	main() 
