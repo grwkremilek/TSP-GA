@@ -23,7 +23,7 @@ def plotTours(lons, lats, ax1, removeLines):
 
 def plotGA(distances, generationCount, ax2):
     '''plot the progession of the genetic algorithm '''
-    ax2.plot(range(generationCount), distances)
+    ax2.plot(range(generationCount), distances, 'k-')
     plt.xlabel('Number of Generations')
     plt.ylabel('Distance')
     

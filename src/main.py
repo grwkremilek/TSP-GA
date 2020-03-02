@@ -13,7 +13,8 @@ import random
 def main():
 
     #DATA
-    genes = ['Prague', 'Olomouc', 'Liberec', 'Opava', 'Brno', 'Pardubice', 'Znojmo', 'Jihlava', 'Opole', 'Bratislava', 'Berlin', 'Trnava', 'Most']
+    #genes = ['Prague', 'Olomouc', 'Liberec', 'Opava', 'Brno', 'Pardubice', 'Znojmo', 'Jihlava', 'Opole', 'Bratislava', 'Berlin', 'Trnava', 'Most']
+    genes = ['Wien', 'Salzburg', 'Maribor', 'Villach', 'Klatovy','Prague', 'Olomouc', 'Liberec', 'Opava', 'Brno', 'Pardubice', 'Znojmo', 'Jihlava', 'Opole', 'Bratislava', 'Berlin', 'Trnava', 'Most']
 
     #INITIAL CONDITIONS
     populationSize = 100
@@ -23,14 +24,13 @@ def main():
     #CONVERGENCE SETTINGS
     converged = False
     generationCount = 1
-    generationLimit = 50
+    generationLimit = 200
     
     #PLOTS
     distances = []
     tours = []
     removeLines = True      
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15,15))               #create a figure with 2 subplots
-    
     ax2.set_xlim([1, generationLimit])                                  #fixed length of x-axis (number of generations)
     ax2.locator_params(nbins=10, axis='x')                              # control density of axis desctiption
     
@@ -40,7 +40,6 @@ def main():
     p = Population(routes)
 
     while not converged:
-        print(generationCount)
         distances.append(p[0][1])
         tours.append(p[0][2])
         converged = evolveByCount(generationCount, converged, generationLimit)
@@ -56,7 +55,7 @@ def main():
             lons.append(city.longitude)
         plotTours(lons, lats, ax1, removeLines)
         
-        ##
+        ## plot the progress of the GA
         plotGA(distances, generationCount, ax2)
 
         #add the most successful individuals from the previous generation
