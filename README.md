@@ -33,28 +33,30 @@
 
 
 ### Population
-* to make the algorithm the least black box possible, the Population class object is a list of class Tour objects, which again is a list of class City objects (the Matryoshka doll style)
+* to make the algorithm the least black box possible, the Population class object is a list of class Tour objects, which again is a list of class City objects (the Matryoshka doll style), thus it is possible to access different levels of data with indices
 * the Population class object is a tuple consisiting of: fitness float value, distance, the Tour class object
 
 
-``` print(p[0])``` 
-```(0.00047625626940124924, 2099.709892023475, [Olomouc, Opava, Trnava, Bratislava, Brno, Znojmo, Most, Opole, Jihlava, Prague, Liberec, Berlin, Pardubice])```
+``` print(p[0])
+
+    print(p[0][2])
+    
+    print(p[0][2][3])
+    
+    print(p[0][2][3].longitude)
+
+``` 
 
 
+```
+(0.00047625626940124924, 2099.709892023475, [Olomouc, Opava, Trnava, Bratislava, Brno, Znojmo, Most, Opole, Jihlava, Prague, Liberec, Berlin, Pardubice])
 
-``` print(p[0][2])``` 
-```[Olomouc, Opava, Trnava, Bratislava, Brno, Znojmo, Most, Opole, Jihlava, Prague, Liberec, Berlin, Pardubice]```
+[Olomouc, Opava, Trnava, Bratislava, Brno, Znojmo, Most, Opole, Jihlava, Prague, Liberec, Berlin, Pardubice]
 
+Bratislava
 
-``` print(p[0][2][3])```
-
-```Bratislava```
-
-
-``` print(p[0][2][3].longitude)``` 
-
-```17.1093063```
-
+17.1093063
+```
 
 
 ### Parent selection
@@ -103,4 +105,3 @@
 
 - [Genetic Algorithms Tutorial](https://www.tutorialspoint.com/genetic_algorithms/index.htm)
 - Larrañaga, P., Kuijpers, C., Murga, R. H., Inza, I., & Dizdarevic, S. (1999). Genetic algorithms for the travelling salesman problem: A review of representations and operators. Artificial intelligence review: An international survey and tutorial journal, 13(2), 129-170. https://doi.org/10.1023/A:1006529012972
-# TSP-GA
