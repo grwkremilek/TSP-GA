@@ -1,4 +1,4 @@
-# TSP-GeneticAglorithm
+# TSP-GeneticAlgorithm
 
 - genetic algorithm for Travelling Salesman Problem implemented in python 3.6
 - explores different selection, crossover and mutation methods 
